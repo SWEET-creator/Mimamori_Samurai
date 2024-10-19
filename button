@@ -1,0 +1,44 @@
+// 読み取りたいピン番号の配列
+const int buttonPins[] = {4, 5, 6, 7};
+
+// 各ピンの状態を保持する配列
+int buttonStates[4];
+
+void setup() {
+  // 各ピンを入力モードに設定
+  pinMode(4, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
+  pinMode(6, INPUT_PULLUP);
+  pinMode(7, INPUT_PULLUP);
+
+  // シリアル通信を開始
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 各ピンの状態を読み取る
+  buttonStates[0] = digitalRead(4);
+  buttonStates[1] = digitalRead(5);
+  buttonStates[2] = digitalRead(6);
+  buttonStates[3] = digitalRead(7);
+
+  // ボタンが押された場合（LOW状態の場合）のみシリアル出力
+  if (buttonStates[0] == LOW) {
+    Serial.println("Button 4 Pressed");
+  }
+
+  if (buttonStates[1] == LOW) {
+    Serial.println("Button 5 Pressed");
+  }
+
+  if (buttonStates[2] == LOW) {
+    Serial.println("Button 6 Pressed");
+  }
+
+  if (buttonStates[3] == LOW) {
+    Serial.println("Button 7 Pressed");
+  }
+
+  // 読み取り速度を調整
+  delay(100);
+}
